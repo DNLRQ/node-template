@@ -12,7 +12,7 @@ export async function startServer(app: Express) {
   await loaders.init({ expressApp: app });
 
   app.listen(3000, () => {
-    console.log("Server is running on http://localhost:", config.port);
+    console.log("Servidor Corriendo en http://localhost:", config.port);
   });
 
 }

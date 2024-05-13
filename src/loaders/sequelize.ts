@@ -18,7 +18,7 @@ const sequelizeLoader = async () => {
 
   await sequelize.authenticate();
 
-  console.log("Sequelize connected.");
+  console.log("Sequelize Conectado.");
 
   loadUserModel(sequelize);
 

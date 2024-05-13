@@ -5,9 +5,6 @@ dotenv.config();
 export default {
   port: process.env.PORT || 3000,
   database: {
-    mongo: {
-      uri: process.env.MONGO_URI || "mongodb://localhost:27017/test",
-    },
     mssql: {
       user: process.env.MSSQL_USER || "",
       password: process.env.MSSQL_PASSWORD || "",
@@ -21,14 +18,6 @@ export default {
       password: process.env.MYSQL_PASSWORD || "",
       database: process.env.MYSQL_DATABASE || "",
       port: process.env.MYSQL_PORT || "",
-    },
-    postgres: {
-      user: process.env.POSTGRES_USER || "",
-      password: process.env.POSTGRES_PASSWORD || "",
-      host: process.env.POSTGRES_HOST || "",
-      database: process.env.POSTGRES_DATABASE || "",
-      port: process.env.POSTGRES_PORT || "",
-      uri: process.env.POSTGRES_URI || "",
     },
   },
   jwt: {
