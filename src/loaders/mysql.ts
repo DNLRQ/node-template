@@ -16,7 +16,7 @@ const mysqlLoader = async () => {
   });
 
 
-  console.log("MySQL Conectado!");
+  console.log("MySQL connected");
 };
 
 

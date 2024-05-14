@@ -6,13 +6,13 @@ export const encontrarUsuarioByEmail = async (email: string): Promise<IUsuario |
     return usuario ? usuario.toJSON() : null;
 }
 
-export const crearUsuario = async (nombre: string, email: string, contrasena: string): Promise<IUsuario> => {
-    const usuario = await Usuario.create({ nombre, email, contrasena });
+export const crearUsuario = async (nombre: string, email: string, contraseña: string): Promise<IUsuario> => {
+    const usuario = await Usuario.create({ nombre, email, contraseña });
     return usuario.toJSON() as IUsuario;
 }
 
 export const encontrarUsuarioByPk = async (id: number): Promise<IUsuario | null> => {
-    const usuario = await Usuario.findByPk(id, { attributes: { exclude: ['contrasena'] } });
+    const usuario = await Usuario.findByPk(id, { attributes: { exclude: ['contraseña'] } });
     return usuario ? usuario.toJSON() : null;
 }
 

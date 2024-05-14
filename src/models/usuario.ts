@@ -6,18 +6,18 @@ export interface IUsuario {
   id?: number;
   nombre: string;
   email: string;
-  contrasena?: string;
+  contraseña?: string;
 }
 
 export const registerSchema = Joi.object({
   email: Joi.string().email().required().email(),
-  contrasena: Joi.string().required().min(6),
+  contraseña: Joi.string().required().min(6),
   nombre: Joi.string().required().min(3),
 });
 
 export const loginSchema = Joi.object({
   email: Joi.string().email().required().email(),
-  contrasena: Joi.string().required().min(6),
+  contraseña: Joi.string().required().min(6),
 });
 
 class Usuario extends Model<IUsuario> { }
@@ -39,13 +39,14 @@ export const loadModel = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      contrasena: {
+      contraseña: {
         type: DataTypes.STRING,
         allowNull: false,
       },
     },
     {
       sequelize,
+      timestamps: false,
       modelName: 'usuarios',
     },
   );

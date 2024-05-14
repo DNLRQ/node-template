@@ -6,14 +6,14 @@ import bcrypt from 'bcrypt';
 import { createTokens } from '../../utils/utils';
 
 const register = async (req: Request, res: Response) => {
-    const { nombre, email, contrasena } = req.body;
+    const { nombre, email, contraseña } = req.body;
 
     const usuarioEncotrado = await usuarioService.encontrarUsuarioByEmail(email);
 
     if (usuarioEncotrado)
         throw new BadRequestError("Email ya registrado");
 
-    const hashedPassword = await bcrypt.hash(contrasena, 10);
+    const hashedPassword = await bcrypt.hash(contraseña, 10);
 
     const usuario = await usuarioService.crearUsuario(nombre, email, hashedPassword);
 
@@ -21,20 +21,20 @@ const register = async (req: Request, res: Response) => {
 }
 
 const login = async (req: Request, res: Response) => {
-    const { email, contrasena } = req.body;
+    const { email, contraseña } = req.body;
 
     const usuario = await usuarioService.encontrarUsuarioByEmail(email);
 
-    if (!usuario?.contrasena)
+    if (!usuario?.contraseña)
         throw new BadRequestError("Credenciales inválidas");
 
-    if (!await bcrypt.compare(contrasena, usuario.contrasena))
+    if (!await bcrypt.compare(contraseña, usuario.contraseña))
         throw new BadRequestError("Credenciales inválidas");
 
     //tokens
     const { accessToken, refreshToken } = await createTokens(usuario);
 
-    delete usuario.contrasena;
+    delete usuario.contraseña;
 
     res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
